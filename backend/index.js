@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use(cors(
     {
-        origin: '*',
+        origin: 'https://portfolio-wyng.onrender.com',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     }
 ));
