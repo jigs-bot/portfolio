@@ -2,7 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-
+dotenv.config();
+GOOGLE_PALM_API_KEY="AIzaSyBFnKznQmrL-EKWpZx9ptnVM55k7F5Lt7E"
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -16,7 +17,7 @@ LC=require("langchain/chains")
 
 
 const llm = new GP.GooglePaLM({
-  apiKey:"process.env.GOOGLE_PALM_API_KEY", // or set it in environment variable as `GOOGLE_PALM_API_KEY`
+  apiKey:GOOGLE_PALM_API_KEY, // or set it in environment variable as `GOOGLE_PALM_API_KEY`
   // other params
   temperature: 0.6, // OPTIONAL 0 or 1
   modelName: "models/text-bison-001", // OPTIONAL
@@ -44,7 +45,7 @@ const run = async () => {
   // Embedding the document in  vector
   let pageContents = docs.map(doc => doc.pageContent);
   const model = new GPE.GooglePaLMEmbeddings({
-    apiKey: "process.env.GOOGLE_PALM_API_KEY", // or set it in environment variable as `GOOGLE_PALM_API_KEY`
+    apiKey: GOOGLE_PALM_API_KEY, // or set it in environment variable as `GOOGLE_PALM_API_KEY`
     modelName: "models/embedding-gecko-001", // OPTIONAL
   });
   
@@ -72,11 +73,11 @@ const chain = LC.RetrievalQAChain.fromLLM(llm, vectorStore.asRetriever(), {
 const result = await chain.call({
   query: "what is jigyashu qualification ?",
 });
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 
 
 }
-run()
+// run()
 
 
   
@@ -92,7 +93,7 @@ run()
 app.post('/chat',async (req,res)=>{  
     
   const model = new GP.GooglePaLM({
-    apiKey:"process.env.GOOGLE_PALM_API_KEY", // or set it in environment variable as `GOOGLE_PALM_API_KEY`
+    apiKey:GOOGLE_PALM_API_KEY, // or set it in environment variable as `GOOGLE_PALM_API_KEY`
     // other params
     temperature: 0, // OPTIONAL 0 or 1
     modelName: "models/text-bison-001", // OPTIONAL
