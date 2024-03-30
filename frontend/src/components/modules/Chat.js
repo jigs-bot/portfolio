@@ -10,7 +10,7 @@ function Chat() {
         if (event.key !== "Enter") {
           return;
         }
-        fetch('http://localhost:3000/chat', {
+        fetch('https://jigyashu-portfolio.onrender.com/chat', {
           method: 'POST',
           body: JSON.stringify({
             text: prompt,
