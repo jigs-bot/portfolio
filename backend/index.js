@@ -6,6 +6,7 @@ dotenv.config();
 GOOGLE_PALM_API_KEY="AIzaSyBFnKznQmrL-EKWpZx9ptnVM55k7F5Lt7E"
 const app = express();
 app.use(express.json());
+
 app.use(cors());
 
 promptAnswer=""
