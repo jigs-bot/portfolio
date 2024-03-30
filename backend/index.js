@@ -7,7 +7,12 @@ GOOGLE_PALM_API_KEY="AIzaSyBFnKznQmrL-EKWpZx9ptnVM55k7F5Lt7E"
 const app = express();
 app.use(express.json());
 
-app.use(cors());
+app.use(cors(
+    {
+        origin: '*',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    }
+));
 
 promptAnswer=""
 cl=require("langchain/document_loaders/fs/csv");
